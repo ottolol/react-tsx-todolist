@@ -1,4 +1,4 @@
-# react-tsx-todolist
+# Пишем приложение todolist на React с использованием typescript (TSX).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
