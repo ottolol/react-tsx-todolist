@@ -1,17 +1,16 @@
 import React from 'react';
 import './App.css';
-import { Todolist } from './Todolist';
-import { PropsType } from './Todolist';
+import { TaskType, Todolist } from './Todolist';
 
 function App() {
 
-  let task1: PropsType = [
+  let task1: Array<TaskType> = [
     { id: 1, title: "CSS@HTML", isDone: true },
     { id: 2, title: "JS", isDone: true },
     { id: 3, title: "React", isDone: false },
   ]
 
-  let task2: PropsType = [
+  let task2: Array<TaskType> = [
     { id: 1, title: "Terminator", isDone: true },
     { id: 2, title: "Avatar", isDone: true },
     { id: 3, title: "Transformers", isDone: true },
