@@ -8,12 +8,14 @@ function App() {
     { id: 1, title: "CSS@HTML", isDone: true },
     { id: 2, title: "JS", isDone: true },
     { id: 3, title: "React", isDone: false },
+    { id: 4, title: "Redux", isDone: false },
   ]
 
   let task2: Array<TaskType> = [
     { id: 1, title: "Terminator", isDone: true },
     { id: 2, title: "Avatar", isDone: true },
     { id: 3, title: "Transformers", isDone: true },
+    { id: 4, title: "Unknown film", isDone: false },
   ]
 
   return (
