@@ -1,14 +1,15 @@
 import React from "react";
 
 export type TaskType = {
-    id: number,
-    title: string,
+    id: number
+    title: string
     isDone: boolean
 }
 
 type PropsType = {
-    title: string,
+    title: string
     tasks: Array<TaskType>
+    removeTask: Function
 }
 
 export function Todolist(props: PropsType) {
@@ -22,8 +23,15 @@ export function Todolist(props: PropsType) {
             <ul>
                 {
                     // вывели все li'шки из массива тасок [task1], [task2] и т.д.
-                    props.tasks.map( t =>
-                        <li><input type="checkbox" checked={t.isDone} /><span>{t.title}</span></li>
+                    props.tasks.map(t =>
+                        <li>
+                            <input type="checkbox" checked={t.isDone} />
+                            <span>{t.title}</span>
+                            <button onClick={() => {
+                                // пишем код, чтобы при нажатии на button - x, таска удалялась
+                                props.removeTask(t.id)
+                            }}>x</button>
+                        </li>
                     )
                 }
                 {/* <li><input type="checkbox" checked={props.tasks[0].isDone} /><span>{props.tasks[0].title}</span></li> */}
