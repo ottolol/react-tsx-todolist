@@ -11,20 +11,15 @@ function App() {
     { id: 4, title: "Redux", isDone: false },
   ]
 
+  // кладем в useState наш массив тасок - initialTasks
   const [tasks, setTasks] = useState(initialTasks);
 
+  // Удаляем таски при нажатии на кнопку - x
   function removeTask(id: number) {
+    // фильтруем массив тасок - initialTasks, он же tasks
     let filteredTasks = tasks.filter(t => t.id !== id)
+    // Присваиваем setTasks новый, отфильтрованный массив тасок - filteredTasks
     setTasks(filteredTasks)
-
-    //обычная запись как в JS - if, else в скобках
-    // let resultTasks = tasks.filter((t) => {
-    //   if (t.id !== id) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // })
   }
 
   return (
