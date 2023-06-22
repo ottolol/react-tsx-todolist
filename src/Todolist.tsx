@@ -1,5 +1,5 @@
-import React from "react";
-import { FilterValuesType } from "./App";
+import React from 'react';
+import './App.css';
 
 export type TaskType = {
     id: number
@@ -7,41 +7,37 @@ export type TaskType = {
     isDone: boolean
 }
 
-type PropsType = {
+export type PropsType = {
     title: string
     tasks: Array<TaskType>
     removeTask: (id: number) => void
-    changeFilter: (value: FilterValuesType) => void
 }
 
-export function Todolist(props: PropsType) {
+export default function Todolist(props: PropsType) {
     return (
         <div className="todolist">
-            <h3>{props.title}</h3>
             <div>
-                <input />
-                <button>+</button>
+                <h3>{props.title}</h3>
             </div>
+            <input /><button>+</button>
             <ul>
                 {
-                    // вывели все li'шки из массива тасок [task1], [task2] и т.д.
                     props.tasks.map(t =>
-                        <li key={t.id}>
+                        <li>
                             <input type="checkbox" checked={t.isDone} />
                             <span>{t.title}</span>
-                            <button onClick={() => {
-                                // пишем код, чтобы при нажатии на button - x, таска удалялась
-                                props.removeTask(t.id)
-                            }}>x</button>
+                            <button onClick={
+                                () => {
+                                    props.removeTask(t.id)
+                                }
+                            }>x</button>
                         </li>
                     )
                 }
             </ul>
-            <div>
-                <button onClick={() => { props.changeFilter("all") }}>All</button>
-                <button onClick={() => { props.changeFilter("active") }}>Active</button>
-                <button onClick={() => { props.changeFilter("completed") }}>Completed</button>
-            </div>
+            <button>All</button>
+            <button>Active</button>
+            <button>Completed</button>
         </div>
-    )
+    );
 }
