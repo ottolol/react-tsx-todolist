@@ -15,10 +15,8 @@ export type PropsType = {
 
 export default function Todolist(props: PropsType) {
     return (
-        <div className="todolist">
-            <div>
-                <h3>{props.title}</h3>
-            </div>
+        <div className='todolist'>
+            <h3>{props.title}</h3>
             <input /><button>+</button>
             <ul>
                 {
@@ -37,7 +35,7 @@ export default function Todolist(props: PropsType) {
             </ul>
             <button>All</button>
             <button>Active</button>
-            <button>Completed</button>
+            <button>Complete</button>
         </div>
-    );
+    )
 }

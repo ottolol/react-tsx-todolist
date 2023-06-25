@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './App.css';
-import Todolist from "./Todolist";
+import Todolist from './Todolist';
 
 function App() {
 
@@ -8,15 +8,13 @@ function App() {
     [
       { id: 1, title: "CSS@HTML", isDone: true },
       { id: 2, title: "JS", isDone: true },
-      { id: 3, title: "React", isDone: false },
+      { id: 3, title: "Reat", isDone: false },
       { id: 4, title: "TypeScript", isDone: false },
     ]
-  );
+  )
 
-  // let [filter, setFilter] = useState("all");
-
-  function removeTask(id: number) {
-    let filteredTasks = tasks.filter(t => t.id !== id)
+  function removeTask (id: number) {
+    let filteredTasks = tasks.filter(t => id !== t.id)
     setTasks(filteredTasks)
   }
 
