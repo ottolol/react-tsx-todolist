@@ -1,29 +1,32 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import Todolist from './Todolist';
+import { TaskType, Todolist } from './Todolist';
+import { v1 } from 'uuid';
 
 export type FilterValuesType = "all" | "completed" | "active";
 
 function App() {
 
-  let [tasks, setTasks] = useState(
-    [
-      { id: 1, title: "CSS@HTML", isDone: true },
-      { id: 2, title: "JS", isDone: true },
-      { id: 3, title: "Reat", isDone: false },
-      { id: 4, title: "TypeScript", isDone: false },
-    ]
-  )
+  // кладем в useState наш массив тасок
+  let [tasks, setTasks] = useState<Array<TaskType>>([
+    { id: v1(), title: "CSS@HTML", isDone: true },
+    { id: v1(), title: "JS", isDone: true },
+    { id: v1(), title: "React", isDone: false },
+    { id: v1(), title: "Redux", isDone: false }
+  ]);
 
-  let [filter, setFilter] = useState("all");
+  let [filter, setFilter] = useState<FilterValuesType>("all");
 
-  function removeTask (id: number) {
-    let filteredTasks = tasks.filter(t => id !== t.id)
+  // Удаляем таски при нажатии на кнопку - x
+  function removeTask(id: string) {
+    // фильтруем массив тасок tasks
+    let filteredTasks = tasks.filter(t => t.id !== id)
+    // Присваиваем setTasks новый, отфильтрованный массив тасок - filteredTasks
     setTasks(filteredTasks)
   }
 
-  function changeFilter(value: FilterValuesType){
-    setFilter(value)
+  function changeFilter(value: FilterValuesType) {
+    setFilter(value);
   }
 
   let tasksForTodolist = tasks;
