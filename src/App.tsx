@@ -14,7 +14,6 @@ function App() {
     { id: v1(), title: "React", isDone: false },
     { id: v1(), title: "Redux", isDone: false }
   ]);
-
   let [filter, setFilter] = useState<FilterValuesType>("all");
 
   // Удаляем таски при нажатии на кнопку - x
