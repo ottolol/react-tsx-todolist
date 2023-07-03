@@ -25,13 +25,14 @@ export function Todolist(props: PropsType) {
         }
     };
     const addTask = () => {
+        // добавляем новую таску
         props.addTask(newTaskTitle);
+        // очищаем input, после добавления новой таски
         setNewTaskTitle("");
     };
     const onAllClickHandler = () => props.changeFilter("all");
     const onActiveClickHandler = () => props.changeFilter("active");
     const onCompletedClickHandler = () => props.changeFilter("completed");
-
 
     return (
         <div className="todolist">
@@ -45,14 +46,16 @@ export function Todolist(props: PropsType) {
             </div>
             <ul>
                 {
-                    props.tasks.map(t =>
-                        <li key={t.id}>
+                    // вывели все li'шки из массива тасок [task1], [task2] и т.д.
+                    props.tasks.map(t => {
+                        const onRemoveHandler = () => props.removeTask(t.id);
+                        return <li key={t.id}>
                             <input type="checkbox" checked={t.isDone} />
                             <span>{t.title}</span>
-                            <button onClick={() => {
-                                props.removeTask(t.id)
-                            }}>x</button>
+                            <button onClick={onRemoveHandler}>x</button>
                         </li>
+                    }
+
                     )
                 }
             </ul>
@@ -61,6 +64,6 @@ export function Todolist(props: PropsType) {
                 <button onClick={onActiveClickHandler}>Active</button>
                 <button onClick={onCompletedClickHandler}>Completed</button>
             </div>
-        </div >
+        </div>
     )
 }
