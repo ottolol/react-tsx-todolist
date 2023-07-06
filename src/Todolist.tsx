@@ -26,10 +26,13 @@ export function Todolist(props: PropsType) {
         }
     };
     const addTask = () => {
-        // добавляем новую таску
-        props.addTask(newTaskTitle);
-        // очищаем input, после добавления новой таски
-        setNewTaskTitle("");
+        // условие - если строка не пустая, добавляем таску
+        if (newTaskTitle.trim() !== "") {
+            // добавляем новую таску
+            props.addTask(newTaskTitle.trim());
+            // очищаем input, после добавления новой таски
+            setNewTaskTitle("");
+        }
     };
     const onAllClickHandler = () => props.changeFilter("all");
     const onActiveClickHandler = () => props.changeFilter("active");

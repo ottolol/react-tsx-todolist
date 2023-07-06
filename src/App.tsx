@@ -40,8 +40,7 @@ function App() {
     }
     // создаем копию массива, чтобы реакт понял, что мы что-то поменяли в массиве
     // без такого подхода - деструктуризации массива, реакт не будет отрисовывать изменения
-    let copy = [...tasks];
-    setTasks(copy);
+    setTasks([...tasks]);
   }
 
   function changeFilter(value: FilterValuesType) {
