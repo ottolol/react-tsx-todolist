@@ -11,10 +11,10 @@ type PropsType = {
     id: string
     title: string
     tasks: Array<TaskType>
-    removeTask: (id: string) => void
+    removeTask: (id: string, todolistId: string) => void
     changeFilter: (value: FilterValuesType, todolistId: string) => void
-    addTask: (title: string) => void
-    changeStatus: (id: string, isDone: boolean) => void
+    addTask: (title: string, todolistId: string) => void
+    changeStatus: (id: string, isDone: boolean, todolistId: string) => void
     filter: FilterValuesType
 }
 
@@ -28,7 +28,7 @@ export function Todolist(props: PropsType) {
         setError(null);
 
         if (e.ctrlKey && e.charCode === 13) {
-            props.addTask(newTaskTitle);
+            props.addTask(newTaskTitle, props.id);
             setNewTaskTitle("");
         }
     };
@@ -36,7 +36,7 @@ export function Todolist(props: PropsType) {
         // условие - если строка не пустая, добавляем таску
         if (newTaskTitle.trim() !== "") {
             // добавляем новую таску
-            props.addTask(newTaskTitle.trim());
+            props.addTask(newTaskTitle.trim(), props.id);
             // очищаем input, после добавления новой таски
             setNewTaskTitle("");
         } else {
@@ -63,9 +63,9 @@ export function Todolist(props: PropsType) {
                 {
                     // вывели все li'шки из массива тасок [task1], [task2] и т.д.
                     props.tasks.map(t => {
-                        const onRemoveHandler = () => props.removeTask(t.id);
+                        const onRemoveHandler = () => props.removeTask(t.id, props.id);
                         const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-                            props.changeStatus(t.id, e.currentTarget.checked);
+                            props.changeStatus(t.id, e.currentTarget.checked, props.id);
                         };
 
                         return <li key={t.id} className={t.isDone ? "is-done" : ""}>

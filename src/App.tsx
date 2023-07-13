@@ -13,29 +13,31 @@ type TodolistType = {
 function App() {
   // Удаляем таски при нажатии на кнопку - x
   function removeTask(id: string, todolistId: string) {
-    let task = tasks[todolistId];
-    // фильтруем массив тасок tasks
-    let filteredTasks = tasks.filter(t => t.id !== id)
-    // Присваиваем setTasks новый, отфильтрованный массив тасок - filteredTasks
-    setTasks(filteredTasks)
+    let tasks = tasksObj[todolistId];
+    let filteredTasks = tasks.filter(t => t.id !== id);
+    tasksObj[todolistId] = filteredTasks;
+
+    setTasks({...tasksObj});
   }
 
   // Добавляем таски
-  function addTask(title: string) {
-    let newTask = { id: v1(), title: title, isDone: false };
-    let newTasks = [newTask, ...tasks];
-    setTasks(newTasks);
+  function addTask(title: string, todolistId: string) {
+    let task = { id: v1(), title: title, isDone: false };
+    let tasks = tasksObj[todolistId];
+    let newTasks = [task, ...tasks];
+    tasksObj[todolistId] = newTasks;
+
+    setTasks({...tasksObj});
   }
 
   // Меняем статус при нажатии на checkbox (true, false)
-  function changeStatus(id: string, isDone: boolean) {
+  function changeStatus(id: string, isDone: boolean, todolistId: string) {
+    let tasks = tasksObj[todolistId];
     let task = tasks.find(t => t.id === id);
     if (task) {
       task.isDone = isDone;
+      setTasks({...tasksObj});
     }
-    // создаем копию массива, чтобы реакт понял, что мы что-то поменяли в массиве
-    // без такого подхода - деструктуризации массива, реакт не будет отрисовывать изменения
-    setTasks([...tasks]);
   }
 
   function changeFilter(value: FilterValuesType, todolistId: string) {
@@ -54,7 +56,7 @@ function App() {
     { id: todolistId2, title: "What to buy", filter: "completed" }
   ]);
 
-  let [tasks, setTasks] = useState({
+  let [tasksObj, setTasks] = useState({
     [todolistId1]: [
       { id: v1(), title: "CSS@HTML", isDone: true },
       { id: v1(), title: "JS", isDone: true },
@@ -73,7 +75,7 @@ function App() {
         todolists.map((tl) => {
 
           // делаем фильрацию по таскам
-          let tasksForTodolist = tasks[tl.id];
+          let tasksForTodolist = tasksObj[tl.id];
 
           if (tl.filter === "completed") {
             tasksForTodolist = tasksForTodolist.filter(t => t.isDone === true);
