@@ -17,7 +17,7 @@ function App() {
     let filteredTasks = tasks.filter(t => t.id !== id);
     tasksObj[todolistId] = filteredTasks;
 
-    setTasks({...tasksObj});
+    setTasks({ ...tasksObj });
   }
 
   // Добавляем таски
@@ -27,7 +27,7 @@ function App() {
     let newTasks = [task, ...tasks];
     tasksObj[todolistId] = newTasks;
 
-    setTasks({...tasksObj});
+    setTasks({ ...tasksObj });
   }
 
   // Меняем статус при нажатии на checkbox (true, false)
@@ -36,7 +36,7 @@ function App() {
     let task = tasks.find(t => t.id === id);
     if (task) {
       task.isDone = isDone;
-      setTasks({...tasksObj});
+      setTasks({ ...tasksObj });
     }
   }
 
@@ -55,6 +55,13 @@ function App() {
     { id: todolistId1, title: "What to learn", filter: "active" },
     { id: todolistId2, title: "What to buy", filter: "completed" }
   ]);
+
+  let removeTodolist = (todolistId: string) => {
+    let filteredTodolist = todolists.filter(tl => tl.id !== todolistId)
+    setTodolists(filteredTodolist);
+    delete tasksObj[todolistId];
+    setTasks({...tasksObj});
+  };
 
   let [tasksObj, setTasks] = useState({
     [todolistId1]: [
@@ -94,6 +101,7 @@ function App() {
             addTask={addTask}
             changeStatus={changeStatus}
             filter={tl.filter}
+            removeTodolist={removeTodolist}
           />
         })
       }
