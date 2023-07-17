@@ -12,6 +12,3 @@
 
 ## Добавили класс .is-done к выполненным таскам
 чтобы они были более блеклыми
-
-https://www.youtube.com/watch?v=LW2H3kb0HDI&list=PLcvhF2Wqh7DOFHUukzl5g4BP_Bbn6oM00&index=6
-продолжаем смотреть с 49:09 - делаем удаление тасок
