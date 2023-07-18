@@ -33,4 +33,4 @@ type TodolistType = {
 Чтобы фильтрация работала на каждой таске
 
 https://www.youtube.com/watch?v=LW2H3kb0HDI&list=PLcvhF2Wqh7DOFHUukzl5g4BP_Bbn6oM00&index=10
-продолжаем с 25:44
+продолжаем с 25:44 
