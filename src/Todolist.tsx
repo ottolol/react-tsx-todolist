@@ -1,5 +1,6 @@
-import React, { ChangeEvent, KeyboardEvent, useState } from "react";
+import React, { ChangeEvent } from "react";
 import { FilterValuesType } from "./App";
+import { AddItemForm } from "./AddItemForm";
 
 export type TaskType = {
     id: string
@@ -20,30 +21,6 @@ type PropsType = {
 }
 
 export function Todolist(props: PropsType) {
-    const [error, setError] = useState<string | null>(null);
-
-    const [newTaskTitle, setNewTaskTitle] = useState("");
-    const onNewTitleChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setNewTaskTitle(e.currentTarget.value);
-    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        // убираем надпись с ошибкой при вводе в инпут
-        setError(null);
-
-        if (e.ctrlKey && e.charCode === 13) {
-            props.addTask(newTaskTitle, props.id);
-            setNewTaskTitle("");
-        }
-    };
-    const addTask = () => {
-        // условие - если строка не пустая, добавляем таску
-        if (newTaskTitle.trim() !== "") {
-            // добавляем новую таску
-            props.addTask(newTaskTitle.trim(), props.id);
-            // очищаем input, после добавления новой таски
-            setNewTaskTitle("");
-        } else {
-            setError("Title is required");
-        }
-    };
     const onAllClickHandler = () => props.changeFilter("all", props.id);
     const onActiveClickHandler = () => props.changeFilter("active", props.id);
     const onCompletedClickHandler = () => props.changeFilter("completed", props.id);
@@ -51,18 +28,16 @@ export function Todolist(props: PropsType) {
         props.removeTodolist(props.id);
     }
 
+    const addTask = (title: string) => {
+        props.addTask(title, props.id);
+    }
+
     return (
         <div className="todolist">
             <h3>{props.title} <button onClick={removeTodolist}>x</button></h3>
-            <div>
-                <input value={newTaskTitle}
-                    onChange={onNewTitleChangeHandler}
-                    onKeyPress={onKeyPressHandler}
-                    className={error ? "error" : ""}
-                />
-                <button onClick={addTask}>+</button>
-                {error && <div className="error-message">{error}</div>}
-            </div>
+            <AddItemForm
+                addItem={addTask}
+            />
             <ul>
                 {
                     // вывели все li'шки из массива тасок [task1], [task2] и т.д.

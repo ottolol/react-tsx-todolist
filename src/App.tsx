@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { TaskType, Todolist } from './Todolist';
 import { v1 } from 'uuid';
+import { AddItemForm } from './AddItemForm';
 
 export type FilterValuesType = "all" | "completed" | "active";
 type TodolistType = {
@@ -78,6 +79,9 @@ function App() {
 
   return (
     <div className="App">
+      // https://www.youtube.com/watch?v=fbCUX0Li1YE&list=PLcvhF2Wqh7DOFHUukzl5g4BP_Bbn6oM00&index=6
+      // 17:49
+      <AddItemForm addItem={(title: string)=>{alert(title)}} />
       {
         todolists.map((tl) => {
 
