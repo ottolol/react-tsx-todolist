@@ -80,7 +80,7 @@ function App() {
   return (
     <div className="App">
       // https://www.youtube.com/watch?v=fbCUX0Li1YE&list=PLcvhF2Wqh7DOFHUukzl5g4BP_Bbn6oM00&index=6
-      // 17:49
+      // 17:49 
       <AddItemForm addItem={(title: string)=>{alert(title)}} />
       {
         todolists.map((tl) => {
