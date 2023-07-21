@@ -11,6 +11,10 @@ type TodolistType = {
   filter: FilterValuesType
 }
 
+type TasksStateType = {
+  [key: string]: Array<TaskType>
+}
+
 function App() {
   // Удаляем таски при нажатии на кнопку - x
   function removeTask(id: string, todolistId: string) {
@@ -64,7 +68,7 @@ function App() {
     setTasks({ ...tasksObj });
   };
 
-  let [tasksObj, setTasks] = useState({
+  let [tasksObj, setTasks] = useState<TasksStateType>({
     [todolistId1]: [
       { id: v1(), title: "CSS@HTML", isDone: true },
       { id: v1(), title: "JS", isDone: true },
