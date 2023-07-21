@@ -61,7 +61,7 @@ function App() {
     let filteredTodolist = todolists.filter(tl => tl.id !== todolistId)
     setTodolists(filteredTodolist);
     delete tasksObj[todolistId];
-    setTasks({...tasksObj});
+    setTasks({ ...tasksObj });
   };
 
   let [tasksObj, setTasks] = useState({
@@ -77,11 +77,25 @@ function App() {
     ]
   });
 
+  function addTodolist(title: string) {
+    let todolist: TodolistType = {
+      id: v1(),
+      title: title,
+      filter: 'all'
+    };
+    setTodolists([todolist, ...todolists]);
+    setTasks({
+      ...tasksObj,
+      [todolist.id]: []
+    })
+  }
+
+  // https://www.youtube.com/watch?v=fbCUX0Li1YE&list=PLcvhF2Wqh7DOFHUukzl5g4BP_Bbn6oM00&index=6
+  // 17:49 
+
   return (
     <div className="App">
-      // https://www.youtube.com/watch?v=fbCUX0Li1YE&list=PLcvhF2Wqh7DOFHUukzl5g4BP_Bbn6oM00&index=6
-      // 17:49 
-      <AddItemForm addItem={(title: string)=>{alert(title)}} />
+      <AddItemForm addItem={addTodolist} />
       {
         todolists.map((tl) => {
 
