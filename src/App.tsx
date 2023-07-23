@@ -94,9 +94,6 @@ function App() {
     })
   }
 
-  // https://www.youtube.com/watch?v=fbCUX0Li1YE&list=PLcvhF2Wqh7DOFHUukzl5g4BP_Bbn6oM00&index=6
-  // 17:49 
-
   return (
     <div className="App">
       <AddItemForm addItem={addTodolist} />
