@@ -28,4 +28,3 @@ Your app is ready to be deployed!
 npm i uuid
 npm i @types/uuid
 ```
-
